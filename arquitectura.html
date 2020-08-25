@@ -38,6 +38,7 @@
         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="arquitectura.html">Arquitectura <span
               class="sr-only">(current)</span></a></li>
         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="debugTest.html">Debug-test</a></li>
+         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="services.html">Services</a></li>
       </ul>
     </div>
   </nav>
@@ -75,8 +76,8 @@
               el concepto general se muestra en la primera gráfica, en donde es importante considerar la declaración de
               objetos de las clases dentro de los métodos constructor como parametros.</br>
               <p></p>
-              Dicho patrón se podría dejar como en la primera grafica interactuando directamente entre las clases, 
-              empero se enlaza con interfaces para facilitar los test unitarios; primero veamos el código sin interfaz, 
+              Dicho patrón se podría dejar como en la primera grafica interactuando directamente entre las clases,
+              empero se enlaza con interfaces para facilitar los test unitarios; primero veamos el código sin interfaz,
               el cual es totalmente funcional.
             </p>
             <ul>
@@ -86,8 +87,8 @@
             </ul>
             <p class="card-text">
               Este es el unico enlazado con .xml
-             </p>
-           <pre class="pre"> 
+            </p>
+            <pre class="pre">
             public class MainActivity extends AppCompatActivity {
 
               Presenter presenter;
@@ -112,18 +113,18 @@
                   tv1.setText(result);
               }
           }</pre>
-           <img class="card-img-top" src="IMG/ARQUITECTURA/view1.png" alt="Card image cap">
-           <p></p>
-           <!--/////////////////////*****////////////////-->
-           <ul>
-            <li class="nav-item">
-              <a class="nav-link"><b>Presenter</b></a>
-            </li>
-          </ul>
-          <p class="card-text">
-            solo es el enlace entre view & model
-           </p>
-         <pre class="pre"> 
+            <img class="card-img-top" src="IMG/ARQUITECTURA/view1.png" alt="Card image cap">
+            <p></p>
+            <!--/////////////////////*****////////////////-->
+            <ul>
+              <li class="nav-item">
+                <a class="nav-link"><b>Presenter</b></a>
+              </li>
+            </ul>
+            <p class="card-text">
+              solo es el enlace entre view & model
+            </p>
+            <pre class="pre">
           public class Presenter {
 
             MainActivity mainActivity;
@@ -140,18 +141,18 @@
                 mainActivity.showResult(result);
             }
         } </pre>
-         <img class="card-img-top" src="IMG/ARQUITECTURA/presenter1.png" alt="Card image cap">
-         <p></p>
-         <!--/////////////////////*****////////////////-->
-         <ul>
-          <li class="nav-item">
-            <a class="nav-link"><b>Model</b></a>
-          </li>
-        </ul>
-        <p class="card-text">
-          Contiene la logica
-         </p>
-       <pre class="pre"> 
+            <img class="card-img-top" src="IMG/ARQUITECTURA/presenter1.png" alt="Card image cap">
+            <p></p>
+            <!--/////////////////////*****////////////////-->
+            <ul>
+              <li class="nav-item">
+                <a class="nav-link"><b>Model</b></a>
+              </li>
+            </ul>
+            <p class="card-text">
+              Contiene la logica
+            </p>
+            <pre class="pre">
         public class Model {
 
           private double result;
@@ -166,11 +167,11 @@
               presenter.mostrarP(String.valueOf(result));
           }
         } </pre>
-       <img class="card-img-top" src="IMG/ARQUITECTURA/model1.png" alt="Card image cap">
+            <img class="card-img-top" src="IMG/ARQUITECTURA/model1.png" alt="Card image cap">
 
-       <!--/////////////////////*****////////////////-->
+            <!--/////////////////////*****////////////////-->
 
-            
+
           </div>
           <div class="card-footer text-muted">
             Publicado en xxx, 2020 by
