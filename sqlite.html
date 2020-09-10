@@ -45,9 +45,9 @@
               <!-- Blog Entries Column -->
               <div class="col-md-8">
         
-                <h1 class="my-4">SQLite
+                <h2 class="my-4">SQLite
                   
-                </h1>
+                </h2>
         
                 <!-- Blog Post -->
                    
@@ -59,67 +59,141 @@
         <!-- Blog Post -->
         <div class="card mb-4">
           
-            <div class="card-body"> <!--
-              <h2 class="card-title">Cambiar nombre Proyecto </h2>
-              <img class="card-img-top" src="IMG/GIT/copiar.png" alt="Card image cap">
-              <p class="card-text">Se puede iniciar con un proyecto clonado de <b>GitHub</b> o copiando un proyecto que ya exista. Lo primero que hacemos es colocarle el nuevo nombre a la carpeta en donde queremos hacer el cambio</p>
+            <div class="card-body"> 
              
-              <p class="card-text">Abrimos AnSt sin dejar que carguen los proyectos de la memoria, 
-                como la nueva copia no se ha utilizado, no aparece en el listado de la izquierda; así que abrimos <b>Open an existing Android Studio proyect</b>, con lo cual se abre el directorio, ubicamos la carpeta carpeta a la que recién asignamos el nuevo nombre y damos click en <b> ok</b></p>
-            <img class="card-img-top" src="IMG/GIT/fil3.png" alt="Card image cap">
+              <h2 class="card-title">crear BBDD</h2>
+              <p class="card-text">Es un sistema de gestión de bases de datos relacional <b>RDBMS</b> que interactúa sobre la BBDD, <i>SQLite</i> es de código abierto disponible en dominio público, mientras <i>MySQL</i> es código abierto pero propiedad de Oracle; <i>SQLite</i> es una base de datos sin servidor e independiente, es decir una BBDD integrada, por lo cual se ejecuta como parte de la aplicación, mientras MySQL requiere un servidor para ejecutarse.</p>
              
-             <p class="card-text">Al abrir el directorio de este proyecto, se observa como aún conserva el antiguo nombre en algunas carpetas y la dirección; Iniciamos separando las carpetas que almacenan los archivos .java: seleccionando la primera carpeta, abriendo el engranaje de opciones y deseleccionando <i>Compact Middle Package</i>, con lo cual la carpeta inicial se separa en tres, en donde cada nombre corresponde con el inicial, separado por el punto</p>
-            <img class="card-img-top" src="IMG/GIT/fil4.png" alt="Card image cap">
-             
-            <p class="card-text">Damos Click derecho en la carpeta que queremos tenga el nuevo nombre del proyecto, seleccionamos <b>refactor</b>, luego <b>rename</b></p>
-            <img class="card-img-top" src="IMG/GIT/fil5.png" alt="Card image cap">
-  
-            <p class="card-text">Aparecen una ventana de advertencia (Warning) y damos clic en <b>Rename package</b>.</p>
-            <img class="card-img-top" src="IMG/GIT/fil6.png" alt="Card image cap">
-  
-            <p class="card-text">Aparece una nueva ventana, <i>Rename</i>, se coloca el nuevo nombre en la primera pestaña de opciones y se da click en <b>Refactor</b>.</p>
-            <img class="card-img-top" src="IMG/GIT/fil7.png" alt="Card image cap">
-  
-            <p class="card-text">Se abre la pantalla de <i>find</i>, mostrando todas las carpetas relacionadas y volvemos a dar click en <b>Do Refactor</b>.</p>
-            <img class="card-img-top" src="IMG/GIT/fil8.png" alt="Card image cap">
-  
-            <p class="card-text">Android estudio nos indica que algunos archivos tienen nombre inválidos, pero eso se corrige más adelante cuando se sincronice el <i>gradle</i>.</p>
-            <img class="card-img-top" src="IMG/GIT/fil9.png" alt="Card image cap">
-  
-            <p class="card-text">Ahora nos dirigimos al archivo <i>Build.gradle(Module:app)</i> y cambiamos el nombre en la línea: <i>applicationId</i>, teniendo presente que cada punto indica el nombre de una carpeta</p>
-            <img class="card-img-top" src="IMG/GIT/fil10.png" alt="Card image cap">
-  
-            <p class="card-text">Sincronizamos la información de <i>gradle</i>, para que la información se actualice</p>
-            <img class="card-img-top" src="IMG/GIT/fil11.png" alt="Card image cap">
-  
-            <p class="card-text">En la pestaña <i>Build</i>, seleccionamos <b>Rebuild Project</b> y esperamos que Android Studio actualice</p>
-            <img class="card-img-top" src="IMG/GIT/fil12.png" alt="Card image cap">
-  
-            <p class="card-text">En el archivo string.xml se cambia el valor del atributo <i>”app_name”</i> con el correspondiente al nuevo nombre, luego en <b>file</b>, seleccionamos: <b>sabe all</b> y reiniciamos Android Studio</p>
-            <img class="card-img-top" src="IMG/GIT/fil13.png" alt="Card image cap">
-                -->
+              <p class="card-text">Lo primero es Crear una clase para la conexión, entidades y utilidades, que ubicaremos en una carpeta, para mantener el orden.</p>
+            <img class="card-img-top" src="IMG/SQLite/sq1.png" alt="Card image cap">
+            <p class="card-text"></p>
+
+            <p class="card-text">En la clase indicada para la conexión se hereda de la clase <b>SQLiteOpenHelper</b>, mediante un extends, a solicitud de la bombilla de advertencia, implementamos métodos y el constructor.</p>
+            <img class="card-img-top" src="IMG/SQLite/sq2.png" alt="Card image cap">
+            <p class="card-text"></p>
+
+            <p class="card-text">En la clase <b>Utilidades</b> declaramos como constantes los nombres de los campos (Columnas) de la tabla, además la sentencia de creación de la tabla en <i>SQL</i>, en este caso al ID, se le agregaron las propiedades de INTEGER PRIMARY KEY AUTOINCREMENT</p>
+            <pre class="pre">
+              public class UtilidadesSQLite {
+
+                public static final String ID = "id";
+                public static final String NOMBRE_PROYECTO = "bbdd_tas";
+                public static final String NOMBRE_MUESTREO = "nombre_muestreo";
+                public static final String LATITUD = "latitud";
+                public static final String LONGITUD = "longitud";
+                public static final String ALTURA = "altura";
+                public static final String FECHA = "fecha";
+                public static final String HORA = "hora";
+                public static final String TAXON = "taxon";
+                public static final String CANTIDAD = "cantidad";
+            
+                public static final String CREAR_TABLA_PROYECTO = "CREATE TABLE "+NOMBRE_PROYECTO+" ("
+                        +ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        +NOMBRE_MUESTREO+" TEXT, "
+                        +LATITUD+" TEXT, "
+                        +LONGITUD+" TEXT, "
+                        +ALTURA+" TEXT, "
+                        +FECHA+" TEXT, "
+                        +HORA+" TEXT, "
+                        +TAXON+" TEXT, "
+                        +CANTIDAD+" TEXT)";
+            }</pre>
+            <img class="card-img-top" src="IMG/SQLite/sq3.png" alt="Card image cap">
+            <p class="card-text"></p>
+            <p class="card-text">Pasamos a la clase <b>Conexión</b>, en el método <b>onCreate()</b> indicamos la ejecución del SQL,
+               utilizando la declaración de la clase utilidades.<br> Además en el método <b>onUpgrade()</b>
+                indicamos la ejecución de la sentencia para actualización, tener presente que se debe dejar un espacio después de la declaración SQL</p>
+
+            <p class="card-text"></p>
+            <pre class="pre">
+              public class ConexionSQLite extends SQLiteOpenHelper {
+
+                public ConexionSQLite(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+                    super(context, name, factory, version);
+                }
+            
+                @Override
+                public void onCreate(SQLiteDatabase db) {
+                    db.execSQL(UtilidadesSQLite.CREAR_TABLA_PROYECTO );
+                }
+            
+                @Override
+                public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+                    db.execSQL("DROP TABLE IF EXISTS " + UtilidadesSQLite.NOMBRE_PROYECTO);
+                }
+            }</pre>
+                     
+            <img class="card-img-top" src="IMG/SQLite/sq4.png" alt="Card image cap">
+            <p class="card-text"></p>
+
+            <p class="card-text"> En la clase en donde queramos se establezca la conexión a la BBDD, creamos un método 
+              para tal fin, en este caso: <i>conectarSQLite()</i>. En el cual declaramos un objeto de la clase Conexión y 
+              lo inicializamos además indicamos la propiedad de escritura con <b>getWritableDatabase()</b>, y 
+              agregamos los valores a las columnas con el método <b>put</b>.<br>Es importante tener presente que en el método <b>db.insert( nombreBBDD, campoUno, values)</b>, 
+              el primer parametro es el nombre de la BBDD, seguido por el primer campo y value.
+              además al final se coloca el método setText con comillas para dejar en blanco las casillas </p>
+              <pre class="pre">
+                public void conectarSQLite(){
+                  ConexionSQLite conexionSQLite = new ConexionSQLite(this, UtilidadesSQLite.NOMBRE_PROYECTO, null, 1 );
+                  SQLiteDatabase db = conexionSQLite.getWritableDatabase();
+                  ContentValues values = new ContentValues();
+          
+                  values.put(UtilidadesSQLite.NOMBRE_MUESTREO, etNombreProyecto.getText().toString());
+                  values.put(UtilidadesSQLite.LATITUD, etIdTransecto.getText().toString());
+                  
+                  Long idResultante = db.insert(UtilidadesSQLite.NOMBRE_PROYECTO, UtilidadesSQLite.NOMBRE_MUESTREO, values);
+          
+                  Toast.makeText(getApplicationContext(), "Numero de Registro = "+idResultante, Toast.LENGTH_LONG).show();
+                  etIdTransecto.setText("");
+                  etNombreProyecto.setText("");
+              }
+                </pre>
+
+            <img class="card-img-top" src="IMG/SQLite/sq5.png" alt="Card image cap">
+            <p class="card-text"></p>  
+   
+                
             </div>
             <div class="card-footer text-muted">
-              Publicado en Julio 24, 2020 by
+              Publicado en Agosto 27, 2020 by
               <a href="#">Armando Pinzon</a>
             </div>
           </div>
   
           <!-- Blog Post -->
-          <!--
+          
           <div class="card mb-4">
-            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+           
             <div class="card-body">
-              <h2 class="card-title">Post Title</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-              <a href="#" class="btn btn-primary">Read More &rarr;</a>
+              <h2 class="card-title">Verificar SQLiteAdmin</h2>
+              <p class="card-text">Para verificar que la información se está cargando en la BBDD, buscamos en <b>Device File Explorer</b>(pestaña inferior derecha), con la aplicación corriendo y el dispositivo conectado, debido a que se toma del archivo que genera la aplicación en el dispositivo.<br>
+                Siguiendo la ruta: <b>data/data/NombreAPP/databases/NombreBBDD</b>, seleccionamos y con click derecho indicamos guardar(save as), a lo que se abre una nueva ventana e indicamos donde guardar
+                </p>
+                <img class="card-img-top" src="IMG/SQLite/sq6.png" alt="Card image cap">
+            <p class="card-text"></p>
+
+            <p class="card-text">Ahora usando el software <b>SQLite Administrator</b> abrimos el archivo recién guardado, a través de la ruta Base De Datos/abrir (pestaña superior izquierda); en la ventana de búsqueda que abre el tipo de archivo debe ser <i>cualquier fichero</i>
+              </p>
+              <img class="card-img-top" src="IMG/SQLite/sq7.png" alt="Card image cap">
+          <p class="card-text"></p>
+
+          <p class="card-text">Para realizar la consulta en la BBDD desde SQLite Administrator, escribimos la sentencia <i>SQL</i> en la ventana principal, en este caso: <b> select * from NombreBBDD</b> y damos click en el botón de ejecutar consulta (cilindro con el engrane, parte superior centro-derecha)</i>
+          </p>
+          <img class="card-img-top" src="IMG/SQLite/sq8.png" alt="Card image cap">
+      <p class="card-text"></p>
+
+      <p class="card-text">La información es desplegada como se observa en la siguiente imagen</i>
+      </p>
+      <img class="card-img-top" src="IMG/SQLite/sq9.png" alt="Card image cap">
+  <p class="card-text"></p>
+              
             </div>
             <div class="card-footer text-muted">
-              Posted on January 1, 2020 by
-              <a href="#">Start Bootstrap</a>
+              Publicado en Agosto 29, 2020 por
+              <a href="#">Armando Pinzon</a>
             </div>
           </div>
-        -->
+        <!--/////////////////// END Post -->
           <!-- Pagination -->
           <ul class="pagination justify-content-center mb-4">
             <li class="page-item">
